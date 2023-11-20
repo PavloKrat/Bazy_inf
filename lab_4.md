@@ -1,7 +1,7 @@
 # Lab 4
 
 
-##Zad1
+## Zad1
 
 ```sql
 CREATE TABLE postac (id_postaci INT AUTO_INCREMENT PRIMARY KEY, nazwa VARCHAR(40) NOT NULL, rodzaj ENUM('wiking','ptak','kobieta'), data_ur DATE, wiek INT UNSIGNED);
@@ -11,7 +11,7 @@ INSERT INTO postac VALUES (default,'Tesciowa','kobieta','1949',83);
 UPDATE postac SET wiek=88 WHERE id_postaci=3;
 ```
 
-##Zad2
+## Zad2
 
 ```sql
 CREATE TABLE walizka (id_walizki INT AUTO_INCREMENT PRIMARY KEY, pojemnosc INT UNSIGNED, kolor ENUM('rozowy','czerwony','teczowy','zolty'), id_wlasciciela INT, FOREIGN KEY (id_wlasciciela) REFERENCES postac(id_postaci) ON DELETE CASDADE);
@@ -20,7 +20,7 @@ INSERT INTO walizka VALUES (default, 50, 'zolty', 1);
 INSERT INTO walizka VALUES (default, 500, 'rozowy', 3);
 ```
 
-##Zad3
+## Zad3
 
 ```sql
 CREATE TABLE izba (adres_budynku VARCHAR(40), nazwa_izby VARCHAR(40), PRIMARY KEY(adres_budynku, nazwa_izby), metraz INT UNSIGNED, wlasciciel INT, FOREIGN KEY (wlasciciel) REFERENCES postac (id_postaci) ON DELETE SET NULL);
@@ -28,7 +28,7 @@ ALTER TABLE izba ADD kolor enum('rozowy') AFTER metraz;
 INSERT INTO izba VALUES ('144', 'spiżarnia', 25, 'rozowy', 1);
 ```
 
-##Zad4
+## Zad4
 
 
 ```sql
@@ -36,7 +36,7 @@ CREATE TABLE przetwory (id_przetworu INT PRIMARY KEY, rok_produkcji INT default 
 INSERT INTO przetwory VALUES (1, 1700, 1, 'bigos', default, 3);
 ```
 
-##Zad5
+## Zad5
 
 ```sql
 INSERT INTO postac values
