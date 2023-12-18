@@ -26,7 +26,7 @@ ON w.id_wyprawy = u.id_wyprawy join etapy_wyprawy e on u.id_wyprawy = e.id_uczes
 
 ### 1
 ```sql
-SELECT w.nazwa, COUNT(u.id) AS liczba_uczestnikow, GROUP_CONCAT(k.nazwa) AS nazwy_uczestnikow
+SELECT w.nazwa, COUNT(u.id_wyprawy) AS liczba_uczestnikow, GROUP_CONCAT(k.nazwa) AS nazwy_uczestnikow
 FROM wyprawa w
 JOIN uczestnicy u ON w.id = u.id_wyprawy
 JOIN kreatura k ON u.id_kreatury = k.id
@@ -55,14 +55,14 @@ ORDER BY w.data_poczatku, e.numer;
 
 ### 2
 ```sql
-
+Select k.nazwa, if(count(u.id_wyprawy)=0, 'nie brał','brał') as czy_wyprawa from kreatura k left join uczestnicy u on u.id_uczestnika=k.idKreatury group by k.nazwa;
 ```
 
 ## Zad4
 
 ### 1
 ```sql
-
+select idWyprawy, sum(length(dziennik)) from etapy_wyprawy group by idWyprawy having sum(length(dziennik))<400;
 ```
 
 ### 2
