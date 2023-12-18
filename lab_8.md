@@ -26,11 +26,23 @@ ON w.id_wyprawy = u.id_wyprawy join etapy_wyprawy e on u.id_wyprawy = e.id_uczes
 
 ### 1
 ```sql
+SELECT w.nazwa, COUNT(u.id) AS liczba_uczestnikow, GROUP_CONCAT(k.nazwa) AS nazwy_uczestnikow
+FROM wyprawa w
+JOIN uczestnicy u ON w.id = u.id_wyprawy
+JOIN kreatura k ON u.id_kreatury = k.id
+GROUP BY w.id, w.nazwa;
 
 ```
 
 ### 2
 ```sql
+SELECT w.nazwa AS nazwa_wyprawy, e.numer AS numer_etapu, s.nazwa AS nazwa_sektora, k.nazwa AS nazwa_kierownika
+FROM wyprawa w
+JOIN etapy_wyprawy e ON w.id = e.id_wyprawy
+JOIN sektor s ON e.id_sektora = s.id
+JOIN kreatura k ON e.id_uczestnika = k.id
+WHERE e.id_uczestnika = w.id_kierownika
+ORDER BY w.data_poczatku, e.numer;
 
 ```
 
